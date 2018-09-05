@@ -1,0 +1,117 @@
+<script src="/static/js/comision.js"></script>
+<!--LISTACOMISON-->
+<div class="col-sm-12 col-md-8 col-md-offset-2">
+    <form name="tabla_categoria" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" id="tabla">
+                <thead>
+                    <tr>
+                        <th>Nombre empleado</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha final</th>
+                        <th>Total Ventas</th>
+                        <th>comisión (%)</th>
+                        <th>Total comisión</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--LISTADO-->
+                    <tr id="{clave_empleado}">
+                        <td>{nombre}</td>
+                        <td>{fecha_inicio}</td>
+                        <td>{fecha_final}</td>
+                        <td>{total_ventas}</td>
+                        <td>{porcentaje_comision}</td>
+                        <td>{total_comision}</td>
+                    </tr>
+                    <!--LISTADO-->
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<!--LISTACOMISON-->
+
+<!--PAGOCOMISION-->
+<div class="col-sm-12 col-md-8 col-md-offset-2">
+    <form name="tabla_categoria" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" id="">
+                <thead>
+                    <tr>
+                        <th>Nombre empleado</th>
+                        <th>Vendido</th>
+                        <th>comisión (%)</th>
+                        <th>Total</th>
+                        <th style="text-align: center;">Opciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--POSISION1-->
+                    <tr id="{clave_empleado}">
+                        <td>{nombre}</td>
+                        <td>{vendido}</td>
+                        <td>{comision}</td>
+                        <td>{totalconcomision}</td>
+                        <td style="text-align: center;">
+                            <a onclick="alertify.confirm('Realizar pago de comisión a: <h3>{nombre}</h3>', function(){pago_comision({clave_empleado},{comision},'{f_i}','{f_f}');});  " class="borrar">
+                                <span class="glyphicon glyphicon-ok-sign" title="Guardar el pago de la comisión {nombre}"></span> Pagar comisión
+                            </a>
+                        </td>
+                    </tr>
+                    <!--POSISION1-->
+
+                    <!--POSISION2-->
+                    <tr id="{clave_empleado}">
+                        <td>{nombre}</td>
+                        <td>{vendido}</td>
+                        <td>{comision}</td>
+                        <td>{totalconcomision}</td>
+                        <td style="text-align: center;">
+                          <a onclick="alertify.confirm('Realizar pago de comisión a: <h3>{nombre}</h3>', function(){pago_comision({clave_empleado},{comision},'{f_i}','{f_f}');});  " class="borrar">
+                                <span class="glyphicon glyphicon-ok-sign" title="Guardar el pago de la comisión {nombre}"></span> Pagar comisión
+                            </a>
+                        </td>
+                    </tr>
+                    <!--POSISION2-->
+
+                    <!--POSISION3-->
+                    <tr id="{clave_empleado}">
+                        <td>{nombre}</td>
+                        <td>{vendido}</td>
+                        <td>{comision}</td>
+                        <td>{totalconcomision}</td>
+                        <td style="text-align: center;">
+                          <a onclick="alertify.confirm('Realizar pago de comisión a: <h3>{nombre}</h3>', function(){pago_comision({clave_empleado},{comision},'{f_i}','{f_f}');});  " class="borrar">
+                                <span class="glyphicon glyphicon-ok-sign" title="Guardar el pago de la comisión {nombre}"></span> Pagar comisión
+                            </a>
+                        </td>
+
+                    </tr id="{clave_empleado}">
+                    <!--POSISION3-->
+
+                    <!--LISTADO-->
+                    <tr id="{clave_empleado}">
+                        <td>{nombre}</td>
+                        <td>{vendido}</td>
+
+                        <!--COMISION-->
+                        <td>{comision}</td>
+                        <td>{totalconcomision}</td>
+                        <td style="text-align: center;">
+                          <a onclick="alertify.confirm('Realizar pago de comisión a: <h3>{nombre}</h3>', function(){pago_comision({clave_empleado},{comision},'{f_i}','{f_f}');});  " class="borrar">
+                                <span class="glyphicon glyphicon-ok-sign" title="Guardar el pago de la comisión {nombre}"></span> Pagar comisión
+                            </a>
+                        </td>
+                        <!--COMISION-->
+
+                    </tr>
+                    <!--LISTADO-->
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+<!--PAGOCOMISION-->

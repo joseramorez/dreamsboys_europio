@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<div class="col-sm-7">
+    <form class="" action="/empleados/empleado/comision_guardar" id="frmcomision" method="post">
+        <input type="hidden" name="comision_empleado_id" value="">
+        <input type="hidden" name="venta_mostrador_id" value="">
+
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Empleado</label>
+            <div class="col-sm-5">
+                <select class="form-control" id="clave_empleado" name="clave_empleado">
+                <option value="">Seleccione una empleado</option>
+                {EMPLEADO}
+                </select>
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Fecha Inicio</label>
+            <div class="col-sm-5">
+                <input type="text" name="fecha_inicio" value="" id="fecha" class="form-control" readonly="">
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Fecha Final</label>
+            <div class="col-sm-5">
+                <input type="text" name="fecha_final" value="" id="fecha2" class="form-control" readonly="">
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Total Ventas</label>
+            <div class="col-sm-5">
+                <input type="text" name="total_ventas" value="" id="total_ventas" class="form-control">
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Procentaje Comisión</label>
+            <div class="col-sm-5">
+                <input type="number" name="porcentaje_comision" value="" id="porcentaje_comision" class="form-control">
+                <br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-4 control-label" for="">Total Comisión</label>
+            <div class="col-sm-5">
+                <input type="text" name="total_comision" value="" id="total_comision" class="form-control">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-5">
+                <br>
+                <input type="submit" name="guardar" id="guardar_empleado" class="btn btn-default">
+            </div>
+        </div>
+    </form>
+</div>

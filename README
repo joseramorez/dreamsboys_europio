@@ -1,0 +1,23 @@
+ACTUALIZAR DESDE VERSIONES ANTERIORES
+
+1. Copie las líneas 53 a 55 del archivo settings.php.dist en su propio
+   archivo settings.php
+   
+2. En la raíz de la aplicación, cree un archivo llamado user_imports.php el cual
+   podrá encontrarse vacío. Su funcionalidad, será la de incluir archivos 
+   comunes porpios de la aplicación que no pertenezcan al núcleo.
+
+3. Cualquier archivo o instrucción que haya agregado previamente de forma manual
+   en el archivo app_engine.php, transpórtela al nuevo archivo user_imports.php
+   y a continuación, reemplace su archivo app_engine.php por el archivo 
+   homónimo de este paquete.
+
+4. Reemplace las carpetas core y tests completas. Si previamente agregó 
+   manualmente archivos a alguna de estas dos carpetas, simplemente sobreescriba
+   los archivos homónimos y agregue los nuevos.
+
+5. Antes de pasar a producción, corra los tests ejecutando ./runtest y 
+   asegúrese de que todos los test pasen correctamente. 
+
+      **** ATENCIÓN **** NO ENVÍE A PRODUCCIÓN SI AL MENOS 1 TEST FALLA.
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<div class="col-xs-12 col-md-12 col-md-offset-1">
+  <form class="" action="/tienda/compra/buscar_compra" method="post" target="_blank" id="frmBuscarcompra">
+    <div class="col-xs-12 col-ms-12 col-md-12">
+      <div class="form-group ">
+        <div class="row">
+          <div class="col-xs-12 col-ms-12 col-md-4 col-md-offset-3">
+            <label for="">Proveedor</label>
+            <select class="form-control" name="proveedor_id">
+              <option value="">Seleccione un proveedor  </option>
+              {PROVEEDOR}
+            </select>
+          </div>
+        </div>
+        <br>
+        <div class="col-xs-12 col-ms-12 col-md-5 ">
+          <label for="">Fecha Inicio</label>
+          <input type="text" name="fecha_inicio" id="fecha"class="form-control" placeholder="fehca de inicio de la busqueda " readonly="">
+        </div>
+        <div class="col-xs-12 col-ms-12 col-md-5">
+          <label for="">Fecha Final</label>
+          <input type="text" name="fecha_fianal"  id="fecha2"class="form-control" placeholder="fecha fianl de la busqueda " readonly="">
+        </div>
+        <div class="col-xs-12 col-ms-12 col-md-4 col-md-offset-3">
+          <br>
+          <input type="submit" class="btn btn-primary" value="Buscar">
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,12 @@
+RewriteEngine On
+RewriteRule !(^static|favicon) app_engine.php
+AddType image/x-icon .ico
+RewriteRule ^favicon favicon.ico [NC,L]
+ErrorDocument 403 /static/html/error/page_403.html
+ErrorDocument 404 /static/html/error/page_404.html
+ErrorDocument 404 /static/html/error/page_500.html
+
+# 1 Month for most static assets
+<filesMatch ".(css|jpg|jpeg|png|gif|js|ico)$">
+Header set Cache-Control "max-age=2592000, public"
+</filesMatch>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <form class="" action="/empleados/empleado/prestamo_guardar" id="frmprestamo" method="post">
+            <input type="hidden" name="prestamo_id" value="">
+
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-11 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-4 col-md-12">
+                            <label class="control-label" for="" title="Categoría">Nombre de Empleado</label>
+                        </div>
+                        <div class="col-sm-12 col-sm-6 col-md-12">
+                            <select class="form-control selectpicker show-tick" id="categoria_id" name="clave_empleado" data-live-search="true" data-size="10">
+                              <option value="">Seleccione una empleado</option>
+                              {EMPLEADO}
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-11 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-4 col-md-12">
+                            <label class="control-label" for="" title="Categoría">Prestamo</label>
+                        </div>
+                        <div class="col-sm-12 col-sm-6 col-md-12">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" class="form-control" name="prestamo" id="prestamo">
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-11 col-md-5 col-md-offset-3">
+                    <div class="form-group">
+                        <div class="col-sm-12 col-sm-4 col-md-12">
+                            <label class="control-label" for="" title="Categoría">Fecha</label>
+                        </div>
+                        <div class="col-sm-12 col-sm-6 col-md-12">
+                            <input type="text" name="fecha" value="{hoy}" id="fecha" class="form-control" readonly="">
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-9 col-sm-offset-2 col-md-3 col-md-offset-4">
+                    <div class="col-sm-6 col-md-6">
+                        <button type="submit" class="btn btn-success btn-block ">
+                        <span name="guardar" id="guardar_producto" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                        </button>
+                        <br>
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        <a onclick="cancelar('/empleados/empleado/listar');">
+                            <button type="button" class="btn btn-danger btn-block ">
+                            <span name="guardar" id="cancelar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+                            </button>
+                        </a>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="col-md-12 well well-sm">
+  <div class="col-md-3 col-md-offset-3" style="aling=center;">
+      <a onclick="confirmar('¿Agregar nuevo producto?','/tienda/producto/agregar');"><span class="fa fa-plus-square fa-2x"></span> Agregar nuevo producto</a>
+  </div>
+  <div class="col-md-3" style="aling=center;">
+      <a onclick="confirmar('Ver faltantes','/tienda/producto/faltantes');"><span class="fa fa-eye fa-2x"></span> Ver faltantes de producto</a>
+  </div>
+</div>
+
+<div class="container-fluid col-sm-12">
+    <form name="tabla_producto" method="post">
+        <div class="table-responsive block-center">
+            <table class="table table-striped table-bordered table-hover" id="tabla">
+                <thead>
+                    <tr>
+                        <!-- <th>ID_PRODUCTO</th> -->
+                        <th>Nombre Producto</th>
+                        <th>Categoría</th>
+                        <th>Marca</th>
+                        <th>Talla</th>
+                        <th>Color</th>
+                        <th>Modelo</th>
+                        <th>Precio Compra</th>
+                        <th>Precio Venta</th>
+                        <th>Existencia</th>
+                        <th>stock Minimo</th>
+                        <th>Código</th>
+                        <th>Imagen</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--LISTADO-->
+                    <tr class="centratesolito">
+                        <!-- <td>{producto_id}</td> -->
+                        <td>{nombre_producto}</td>
+                        <td>{nombre_categoria}</td>
+                        <td>{marca}</td>
+                        <td>{talla}</td>
+                        <td>{color}</td>
+                        <td>{modelo}</td>
+                        <td>{precio_compra}</td>
+                        <td>{precio_venta}</td>
+                        <td>{existencia}</td>
+                        <td>{stock}</td>
+                        <td>
+                          <a onclick="alertify.confirm('¿Desea bajar el codigo de {nombre_producto}?',
+                            function(){location.href = '/tienda/producto/_barcode/{codigo}';alertify.success('Ok');});">
+                            <button type="button" name="button"><span class="glyphicon glyphicon-barcode"><br>{codigo}</span></button>
+                          </a>
+                        </td>
+                        <td>
+                            <a data-toggle="modal" href="#zoomimagen"><img class="zoom" src="/static/dreamsboys/{imagen}" onerror="this.src='/static/dreamsboys/dreamsboys.jpg';" alt="imagen" width="80" height="70" /></a>
+                        </td>
+                        <td style="text-aling= center;">
+                            <a onclick="alertify.confirm('¿Desea editar el producto {nombre_producto}?',
+                            function(){location.href = '/tienda/producto/editar/{producto_id}';alertify.success('Ok');}); ">
+                                <span class="fa fa-pencil-square-o fa-2x" title="Editar el producto {nombre_producto}"></span>
+                                </a>
+                                &nbsp; &#160;
+                                <a onclick="alertify.confirm('¿Desea borrar el producto {nombre_producto}?',
+                            function(){ location.href='/tienda/producto/eliminar/{producto_id}';alertify.success('Ok');});">
+                                    <span class="fa fa-times fa-2x" title="Eliminar el producto {nombre_producto}"></span>
+                                    </a>
+                        </td>
+                    </tr>
+                    <!--LISTADO-->
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+<br><br>
+</div>

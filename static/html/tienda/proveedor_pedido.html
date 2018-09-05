@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<script src="/static/js/pedido.js"></script>
+
+<div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1">
+    <form class="" action="/tienda/proveedor/realizar_pedido" id="frmpedido" method="post">
+        <input type="hidden" name="proveedor_id" value="{proveedor_id}">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-3 centratesolito">
+                    <label for="">RUC</label>
+                    <input type="text" name="ruc" value="{ruc}" id="ruc" class="form-control centratesolito" title="Nombre ó Codigo del producto" readonly="">
+                </div>
+                <div class="col-sm-12 col-sm-4 col-md-3 centratesolito">
+                    <label for="" >Razon Rocial</label>
+                    <input type="text" name="razon_social" value="{razon_social}" id="razon_social" class="form-control centratesolito" title="Nombre ó Codigo del producto" readonly="">
+                </div>
+
+                <div class="col-sm-12 col-sm-4 col-md-3 centratesolito">
+                    <label for="" >Email</label>
+                    <input type="text" name="email" value="{email}" id="email" class="form-control centratesolito" title="Nombre ó Codigo del producto" readonly="">
+                </div>
+                <div class="col-sm-12 col-sm-4 col-md-3 centratesolito">
+                    <label for="" >Telefono</label>
+                    <input type="text" name="telefono" value="{telefono}" id="telefono" class="form-control centratesolito" title="Nombre ó Codigo del producto" readonly="">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-6 col-md-offset-2">
+            <br>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                    <label class="control-label" for="nombre" title="Nombre ó Codigo del producto">Nombre ó Codigo</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                    <div class="input-group">
+                        <input type="number" class="form-control col-xs-12 col-sm-12" name="codigo_ventas" id="codigo_pedido" value="" placeholder="Código">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button" id="agregar"><span class="glyphicon glyphicon-plus"> Agregar</span></button>
+                        </span><span class="input-group-btn"><button class="btn btn-default" type="button" id="buscar" data-toggle="modal" data-target="#modal_buscar"><span class="glyphicon glyphicon-search"></span> Buscar</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 ">
+            <div class="form-group">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="tablacompra">
+                        <thead>
+                            <br>
+                            <tr class="centratesolito">
+                                <th>Borrar</th>
+                                <th>codigo</th>
+                                <th>nombre producto</th>
+                                <th>cantidad a pedir</th>
+                                <th>precio compra Unitario</th>
+                                <th>existencia</th>
+                                <th>stock</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                            {PRODUCTO_EXT}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-6 ">
+            <div class="col-md-6">
+              <a onclick="">
+                <button type="button" class="btn btn-success btn-block btn-lg" onclick="enviar();">
+                  <span name="guardar" id="enviar_pedido" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Enviar
+                  </button>
+              </a>
+                <br>
+            </div>
+            <div class="col-md-6">
+                <a onclick="cancelar('/tienda/proveedor/listar');" ;>
+                    <button type="button" class="btn btn-danger btn-block btn-lg">
+            <span name="guardar" id="cancelar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+            </button>
+                </a>
+                <br>
+            </div>
+        </div>
+    </form>
+</div>
+
+
+<div class="modal fade" id="modal_buscar" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">BUSQUEDA DE PRODUCTOS POR NOMBRE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="text" name="nombre_buscar" id="nombre_buscar" class="form-control" placeholder="nombre del producto">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" onclick="agregarApedido();" class="btn btn-info" id="buscar_producto">agregar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="cont_producto">
+          		<div class="col-md-12">
+          			<div class="panel panel-default">
+          				<div class="panel-heading centrate">  Productos  &nbsp;&nbsp; </div>
+          				<div class="panel-body">
+          					<div class="row">
+          						<br>
+          						<!--PRODUCTOS-->
+          						<div class="col-md-4 col-sm-6">
+          							<div class="portfolio-item">
+          								<div class="portfolio-image">
+          									<img class="img-responsive" id="imagen" alt="Imagen del producto">
+          								</div>
+          								<div class="portfolio-info">
+          									<ul>
+          										<li class="portfolio-project-name" id="nombre_producto"></li>
+                              <div class="" id="modelo">
+                                <li>modelo:<span></span></li>
+                              </div>
+                              <div class="" id="codigo">
+                                <li>codigo:<span></span></li>
+                              </div>
+                              <div class="" id="precio_compra">
+                                <li><label>$<span></span></label></li>
+                              </div>
+          									</ul>
+          								</div>
+          							</div>
+          						</div>
+          						<!--PRODUCTOS-->
+          					</div>
+          				</div>
+          			</div>
+          		</div>
+          	</div>
+            <br><br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

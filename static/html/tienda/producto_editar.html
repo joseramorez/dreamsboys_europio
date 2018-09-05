@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1">
+      <form class="" action="/tienda/producto/guardar" id="frmproducto" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="producto_id" value="{producto_id}">
+          <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Categoría">Categoría</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                      <select class="form-control selectpicker show-tick" id="categoria_id" name="categoria_id" data-live-search="true" data-size="10">
+                        <option value="{categoria_id}">{nombre_categoria}</option>
+                          {OPCIONES}
+                      </select>
+                      <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Marca del producto" >Marca</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <select class="form-control selectpicker show-tick" id="categoria_id" name="marca" data-live-search="true" data-size="10">
+                        <option value="{marca_id}">{nombre_marca}</option>
+                        {MARCA}
+                    </select>
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <br>
+                  <label class="control-label" for="" title="Nombre del producto">Producto</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="nombre_producto" value="{nombre_producto}" id="nombre_producto" class="form-control">
+                      <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <br>
+                  <label class="control-label" for="" title="Modelo">Modelo</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="modelo" value="{modelo}" id="modelo" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Color">Color</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="color" value="{color}" id="color" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for=""  title="Precio de compra">Precio compra</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="precio_compra" value="{precio_compra}" id="precio_compra" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Mínimo disponible en existencia">Stock Minimo</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="stock" value="{stock}" id="stock" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Precio sugerido de venta">Precio venta</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="precio_venta" value="{precio_venta}" id="precio_venta" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Talla">Talla</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="talla" value="{talla}" id="talla" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for=""  title="Cantidad en almacen">Existencia</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="existencia" value="{existencia}" id="existencia" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Código del producto">Código</label>
+                </div>
+                  <div class="col-sm-12 col-sm-6 col-md-12">
+                    <input type="text" name="codigo" value="{codigo}" id="codigo" class="form-control">
+                    <br>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+              <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="" title="Imagen">Imagen</label>
+                </div>
+
+                  <div class="col-sm-12 col-sm-6 col-md-12" id="subir" {estado_subir}>
+                      <input type="file" name="imagen" value="" id="imagen" class="form-control" accept="image/jpeg, image/png, image/gif">
+                      <input type="hidden" name="imgprevia">
+                  </div>
+
+                  <div class="col-sm-12 col-sm-6 col-md-12 " id="previa" {estado_previa}>
+                      <div class="file-preview-frame ">
+                          <div class="kv-file-content">
+                              <img src="/static/dreamsboys/{imagen}" alt="" style="width:auto;height:160px;" onerror="this.src='/static/dreamsboys/dreamsboys.jpg';"/>
+                          </div>
+                      </div>
+                      <br>
+
+                      <button type="button" name="nombre" class="btn btn-default" id="imgremover" onclick="">
+                      <i class="glyphicon glyphicon-trash"></i>
+                      <span class="hidden-xs">Quitar</span></button>
+                  </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-2 col-md-pull-0 ">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-success btn-block btn-lg">
+                <span name="guardar" id="guardar_producto" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                </button>
+                <br>
+              </div>
+              <div class="col-md-12">
+                <a onclick="cancelar('/tienda/producto/listar');">
+                <button type="button" class="btn btn-danger btn-block btn-lg">
+                <span name="guardar" id="cancelar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+                </button>
+              </a>
+                <br>
+              </div>
+              <script src="/static/js/prod.js"></script>
+          </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+<p></p>
+<script language="javascript" type="text/javascript" src="/static/js/forms_usuarios.js"></script>
+<div class="col-sm-11 col-md-8 col-md-offset-2">
+  <form method="POST" action="/users/user/guardar">
+    <h3>{titulo}</h3>
+      <div class="col-sm-12">
+          <div class="form-group">
+              <div class="col-sm-8">
+                  <input type="hidden" name="id" value="{user_id}">
+                  <label for="name">Nombre de usuario:</label><br/>
+                  <input type="text" name="user" id="name" class="form-control" value="{user}" onkeyup="verificar_nombre();" /><br/>
+                  <span class='error' id="usererror">{error}</span>
+                  <em>Mínimo: 6 caracteres</em>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-12">
+              <div class="col-sm-8">
+                  <br>
+                  <label for="passwd">Contraseña:</label><br/>
+                  <input type="password" name="pwd" id="passwd" class="form-control" value="{pwd}" />
+                  <br>
+                  <input type="button" value="Generar clave segura" class="btn btn-default generator" onclick="generar_pwd('passwd');" />
+                  <code id="pwd_generada"></code><br/>
+                  <span class='error' id="errorpwd">
+                    {errorp}</span>
+                  <em>Mínimo: 6 caracteres (espacios en blanco no son computables)</em>
+                  <br/><br/>
+
+                  <label for="level">Nivel de Acceso:</label><br/>
+                  <select name="level" id="level" class="form-control" onchange="habilitar('otro');">
+                    <option class="form-control;"value=1{opt1}>1 (primer nivel: administrador)</option>
+                    <br>
+                    <option class="form-control;" value=2{opt2}>2 (segundo nivel: Usuario)</option>
+                 </select>
+                  <br>
+                  <input type="submit" class="btn btn-primary" value="{titulo} usuario">
+              </div>
+          </div>
+      </div>
+  </form>
+</div>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<div class="col-md-12 well well-sm">
+    <div class="col-sm-5" style="aling=center;">
+        <a href="/empleados/empleado/agregar"><span class="fa fa-plus-square fa-2x"></span> Agregar nuevo empleado</a>
+    </div>
+</div>
+<div class="col-md-12">
+  <form class="" method="post">
+      <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover" id="tabla">
+              <thead>
+                  <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Apellido P.</th>
+                      <th>Apellido M.</th>
+                      <th>Edad</th>
+                      <th>Fecha nacimiento</th>
+                      <th>Direccion</th>
+                      <th>Telefono</th>
+                      <th>CURP</th>
+                      <th>RFC</th>
+                      <th>Salario</th>
+                      <th>Opciones</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!--LISTADO-->
+                  <tr>
+                      <td>{empleado_id}</td>
+                      <td>{nombre}</td>
+                      <td>{apellido_paterno}</td>
+                      <td>{apellido_materno}</td>
+                      <td>{edad}</td>
+                      <td>{fecha_nacimiento}</td>
+                      <td>{direccion}</td>
+                      <td>{telefono}</td>
+                      <td>{curp}</td>
+                      <td>{rfc}</td>
+                      <td>{salario}</td>
+                      <td style="text-aling= center;">
+                          <a onclick="alertify.confirm('¿Desea editar al empleado {empleado_id}?',
+                          function(){location.href = '/empleados/empleado/editar/{empleado_id}';alertify.success('Ok');}); ">
+                              <span class="fa fa-pencil-square-o fa-2x" title="Editar el empleado {nombre}"></span>
+                          </a>
+                          &nbsp; &#160;
+                          <a onclick="alertify.confirm('¿Desea borrar al empleado {empleado_id}?',
+                          function(){ location.href='/empleados/empleado/eliminar/{empleado_id}';alertify.success('Ok');});">
+                              <span class="fa fa-times fa-2x" title="Eliminar al empleado {nombre}"></span>
+                          </a>
+                      </td>
+                  </tr>
+                  <!--LISTADO-->
+              </tbody>
+          </table>
+      </div>
+  </form>
+</div>

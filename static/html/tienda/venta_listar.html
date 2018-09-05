@@ -1,0 +1,43 @@
+<div class="col-sm-11">
+    <form name="tabla_venta_mostrador" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="tabla">
+              <thead>
+                  <tr>
+                      <th>No Venta</th>
+                      <th>Nombre empleado</th>
+                      <th>Fecha venta</th>
+                      <th>Sub-total</th>
+                      <th>Total</th>
+                      <th>Paga-con</th>
+                      <th>Cambio</th>
+                      <th class="centrate">Detalle de <br> venta</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!--LISTADO-->
+                  <tr>
+                      <td>{venta_id}</td>
+                      <td>{nombre}</td>
+                      <td>{fecha_venta}</td>
+                      <td>{sub_total}</td>
+                      <td>{total}</td>
+                      <td>{paga_con}</td>
+                      <td>{cambio}</td>
+                      <td class="centrate">
+                          <a href="/tienda/venta/detalle/{venta_id}">
+                            <span class="glyphicon glyphicon-align-justify" data-toggle="tooltip" title="Detalle de  la venta {venta_id}"></span>
+                          </a>
+                      </td>
+                  </tr>
+                  <!--LISTADO-->
+              </tbody>
+            </table>
+        </div>
+    </form>
+    <div class="col-sm-5" style="aling=center;">
+      <br>
+        <a href="/tienda/venta/agregar"><img src="/static/img/add.png" /> Agregar nueva venta</a>
+        <br><br>
+    </div>
+</div>

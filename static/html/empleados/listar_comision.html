@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<div class="col-sm-8">
+    <form name="tabla_categoria" method="post">
+        <div class="table-responsive">
+            <table class="table-bordered" id="tablacategoria">
+
+                <thead>
+                    <tr>
+                        <th>pago_id</th>
+                        <th>Clave <br> empleado</th>
+                        <th>nombre</th>
+                        <th>Fecha inicio</th>
+                        <th>Fecha final</th>
+                        <th>prestamo</th>
+                        <th>pago</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!--LISTADO-->
+                    <tr>
+                        <td>{pago_id}</td>
+                        <td>{empleado_id}</td>
+                        <td>{nombre}</td>
+                        <td>{fecha_pago_inicio}</td>
+                        <td>{fecha_pago_final}</td>
+                        <td>{total_prestamo}</td>
+                        <td>{pago}</td>
+                    </tr>
+                    <!--LISTADO-->
+                </tbody>
+            </table>
+        </div>
+    </form>
+
+    <div class="col-sm-5" style="aling=center;">
+      <br>
+        <a href="/tienda/categoria/agregar"><img src="/static/img/add.png" /> Agregar nueva categoría</a>
+    </div>
+
+</div>

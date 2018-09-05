@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<script src="/static/js/emp.js"></script>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-7">
+        <form class="" action="/empleados/empleado/pago_guardar" id="frmpago_empleado" method="post">
+            <input type="hidden" name="pago_empleado_id" value="">
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Empleado</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <select class="form-control selectpicker show-tick" id="clave_empleado" name="clave_empleado" data-live-search="true" data-size="10">
+                        <option value="">Seleccione una vendedor</option>
+                        {EMPLEADO}
+                      </select>
+                        <br>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                  <br>
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Salario</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <input type="text" class="form-control" name="pago" id="pago">
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Fecha Inicio</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <input type="text" name="fecha_pago_inicio" value="" id="fecha" class="form-control" readonly="" placeholder="">
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Fecha Final</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <input type="text" name="fecha_pago_final" value="" id="fecha2" class="form-control" readonly="">
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Prestamo</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <input type="text" name="prestamo" id="prestamo" class="form-control">
+
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-12">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-3 col-md-offset-1">
+                        <label for="" class="control-label">Pago final</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-8">
+                        <div class="input-group">
+                            <input type="text" name="pago_final" id="salario" class="form-control">
+                            <span class="input-group-btn">
+                              <button type="button" name="button" class="btn btn-secondary" onclick="totall();" title="calcula el pago total de salario menos prestamos">Calcular $</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-12">
+                <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-5">
+                    <div class="form-group">
+                        <br>
+                        <div class="col-xs-6 col-sm-5 col-md-4">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <span name="guardar" id="guardar_categoria" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Pagar
+                                </button>
+                            <br>
+                            <br>
+                        </div>
+                        <div class="col-xs-6 col-sm-5 col-md-4">
+                            <a onclick="cancelar('/empleados/empleado/listar');">
+                                <button type="button" class="btn btn-danger btn-lg">
+                                <span name="guardar" id="guardar_categoria" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+                                </button>
+                            </a>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-5">
+      <div class="col-md-8 col-md-offset-2">
+        <p class="centratesolito"><h3>Ultimos 10 movimientos</h3></p>
+      </div>
+      <div class="col-md-12">
+        <form name="tabla_categoria" method="post">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="">
+                    <thead>
+                        <tr>
+                            <th>nombre</th>
+                            <th>Fecha inicio</th>
+                            <th>Fecha final</th>
+                            <th>prestamo</th>
+                            <th>pago</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!--LISTADO-->
+                        <tr>
+                            <td>{nombre}</td>
+                            <td>{fecha_pago_inicio}</td>
+                            <td>{fecha_pago_final}</td>
+                            <td>{total_prestamo}</td>
+                            <td>{pago}</td>
+                        </tr>
+                        <!--LISTADO-->
+                    </tbody>
+                </table>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>

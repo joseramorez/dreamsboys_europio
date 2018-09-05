@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<form class="" action="/tienda/compra/guardar" method="post" id="frmcompra">
+    <input type="hidden" name="compra_id" value="{compra_id}">
+    <br>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Proveedor</label>
+        <div class="col-md-5">
+            <select class="form-control" name="proveedor_id">
+              <option value="{proveedor_id}">{razon_social}</option>
+              {OPCIONES}
+            </select>
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Producto</label>
+        <div class="col-md-5">
+            <select class="form-control" name="producto_id">
+              <option value="{producto_id}">{nombre_producto}</option>
+              {PRODUCTO}
+            </select>
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Cantidad Comprada</label>
+        <div class="col-sm-5">
+            <input type="number" name="cantidad_comprada" value="{cantidad_comprada}" id="cantidad_comprada" class="form-control">
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Fecha de Compra</label>
+        <div class="col-sm-5">
+            <input type="text" name="fecha_compra" value="{fecha_compra}" id="fecha_compra" class="form-control" readonly="">
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Precio de Compra</label>
+        <div class="col-sm-5">
+            <input type="number" name="precio_compra" value="{precio_compra}" id="precio_compra" class="form-control">
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-sm-12 control-label" for="">Precio de Venta</label>
+        <div class="col-sm-5">
+            <input type="number" name="precio_venta" value="{precio_venta}" id="precio_venta" class="form-control">
+            <br>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary btn-md">
+          <span name="guardar" id="guardar_compra_editar" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+          </button>
+          &nbsp; &#160;
+            <a href="/tienda/compra/listar" onclick="return confirm('Se perderan los cambios, ¿Desea continuar?')" ;>
+                <button type="submit" class="btn btn-danger btn-md">
+              <span name="cancelar" id="cancelar_compra_editar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+              </button></a>
+        </div>
+    </div>
+</form>

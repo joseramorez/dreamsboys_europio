@@ -1,0 +1,46 @@
+<!doctype html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+    <link rel="stylesheet" href="/static/css/alertify.css">
+    <link rel="stylesheet" href="/static/css/themes/bootstrap.css">
+
+    <title>Ingreso al Sistema</title>
+
+</head>
+
+<body>
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/jquery.validate.js"></script>
+    <script src="/static/js/alertify.js"></script>
+    <script type="text/javascript">
+        alertify.defaults.transition = "slide";
+        alertify.defaults.theme.ok = "btn btn-primary";
+        alertify.defaults.theme.cancel = "btn btn-danger";
+        alertify.defaults.theme.input = "form-control";
+    </script>
+    <div class="login">
+        <form class="form-signin" method="POST" action="/users/user/check" id="login">
+            <h3 style="color:white; text-align:center;">Usuario y Contraseña</h3>
+            <p style="color:white; text-align:center;">
+                Usuario desconectado del sistema
+            </p>
+
+            <br>
+            <div class="form-group centrate">
+                <div class="col-sm-5">
+                    <input type="text" name="user" id="user" placeholder="Nombre de Usuario" autocomplete="off" /><br>
+                </div>
+                <div class="col-sm-5">
+                    <input type="password" name="pwd" id="pwd" placeholder="Contraseña" /><br><br>
+                </div>
+                <div class="col-sm-5">
+                    <input type="button" onclick="logear();" value="Ingresar" class="btn btn-primary btn-block btn-large">
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/static/js/login.js"></script>
+</body>

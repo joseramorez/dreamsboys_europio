@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Ing. Jose A. Ramirez Mendoza">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/jquery-ui.css">
+    <link rel="stylesheet" href="/static/css/detallasos.css">
+    <link rel="stylesheet" href="/static/css/template.css">
+    <link rel="stylesheet" href="/static/css/fileinput.css">
+    <link rel="stylesheet" href="/static/css/alertify.css">
+    <link rel="stylesheet" href="/static/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/jquery.smartmenus.bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="/static/less/components.less" />
+
+    <script src="/static/js/jquery-3.1.1.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <!-- <script src="/static/js/jquery.dataTables.min.js"></script> -->
+    <script src="/static/js/jquery-ui.js"></script>
+    <script src="/static/js/jquery.validate.js"></script>
+    <script src="/static/js/fileinput.js"></script>
+    <script src="/static/js/jquery.numeric.js"></script>
+    <script src="/static/js/alertify.js"></script>
+    <script src="/static/js/jquery.smartmenus.js"></script>
+    <script src="/static/js/jquery.smartmenus.bootstrap.js"></script>
+    <script src="/static/js/numericInput.js"></script>
+
+    <script src="/static/js/template.js"></script>
+    <script src="/static/js/tablas.js"></script>
+    <script src="/static/js/fecha.js"></script>
+    <!--highcharts -->
+    <script src="/static/js/highcharts.js"></script>
+    <script src="/static/js/highcharts-exporting.js"></script>
+    <script src="/static/js/bootstrap-select.js"></script>
+
+<!-- datatables -->
+<script src="/static/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/static/datatables/js/dataTables.bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="/static/datatables/css/buttons.bootstrap.min.css">
+<link rel="stylesheet" href="/static/datatables/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="/static/datatables/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" href="/static/datatables/css/fixedHeader.bootstrap.min.css">
+
+<script src="/static/datatables/js/buttons.colVis.min.js"></script>
+<script src="/static/datatables/js/buttons.html5.min.js"></script>
+<script src="/static/datatables/js/buttons.print.min.js"></script>
+<script src="/static/datatables/js/dataTables.buttons.min.js"></script>
+<script src="/static/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/static/datatables/js/dataTables.fixedHeader.min.js"></script>
+<script src="/static/datatables/js/jszip.min.js"></script>
+<script src="/static/datatables/js/pdfmake.min.js"></script>
+<script src="/static/datatables/js/vfs_fonts.js"></script>
+<script src="/static/datatables/js/buttons.bootstrap.min.js"></script>
+<script src="/static/datatables/js/responsive.bootstrap.min.js"></script>
+
+
+    <title>{TITLE}</title>
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                   <span class="sr-only">Toggle navigation</span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                   <span class="icon-bar"></span>
+                 </button>
+                <a class="navbar-brand" href="#"><strong>Dreams Boys</strong></a>
+            </div>
+
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li><a href="#"><span class="fa fa-cube"></span> Almacen <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Menu</li>
+
+                            <li ><a href="#"><span class="glyphicon glyphicon-barcode"></span> Producto<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="producto_lista">
+                                        <a href="/tienda/producto/listar"><span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="producto_agregar">
+                                        <a href="/tienda/producto/agregar"><span class="glyphicon glyphicon-plus"></span> Agregar</a>
+                                    </li>
+                                    <li id="producto_faltantes">
+                                        <a href="/tienda/producto/faltantes"><span class="glyphicon glyphicon-exclamation-sign"></span> Faltantes</a>
+                                    </li>
+                                    <li id="producto_buscar">
+                                        <a href="/tienda/producto/buscar"><span class="fa fa-search"></span> Buscar</a>
+                                    </li>
+                                    <li id="producto_ultimos">
+                                        <a href="/tienda/producto/ultimos"><span class="fa fa-sort-numeric-desc"></span> Ultimos 10 agregados</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li ><a href="#"><span class="glyphicon glyphicon-list-alt"></span> Categoria<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="categoria_listar">
+                                        <a href="/tienda/categoria/listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="categoria_agregar">
+                                        <a href="/tienda/categoria/agregar"> <span class="glyphicon glyphicon-plus"></span> Agregar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li ><a href="#"><span class="fa fa-tags"></span> Marca<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="categoria_listar">
+                                        <a href="/tienda/marca/listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="categoria_agregar">
+                                        <a href="/tienda/marca/agregar"> <span class="glyphicon glyphicon-plus"></span> Agregar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Compras <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Menu</li>
+
+                            <li ><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span> Compras<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="compra_lista">
+                                        <a href="/tienda/compra/listar"><span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="compra_agregar">
+                                        <a href="/tienda/compra/agregar"><span class="glyphicon glyphicon-plus"></span> Agregar</a>
+                                    </li>
+                                    <li id="compra_agregar">
+                                        <a href="/tienda/compra/busqueda"><span class="fa fa-search"></span> Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li ><a href="#"><span class="glyphicon glyphicon-lock"></span> Proveedores<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="categoria_listar">
+                                        <a href="/tienda/proveedor/listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="categoria_agregar">
+                                        <a href="/tienda/proveedor/agregar"> <span class="glyphicon glyphicon-plus"></span> Agregar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-sunglasses"></span> Empleados <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Menu</li>
+
+                            <li id="empleados_listar">
+                                <a href="/empleados/empleado/listar"><span class="glyphicon glyphicon-list">
+                              </span> Listar</a>
+                            </li>
+                            <li id="empleados_agregar">
+                                <a href="/empleados/empleado/agregar"><span class="glyphicon glyphicon-plus">
+                              </span> Agregar</a>
+                            </li>
+
+                            <li><a href="#"><span class="glyphicon glyphicon-usd"></span> Pago<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="empleados_pago">
+                                        <a href="/empleados/empleado/pago"> <span class="glyphicon glyphicon-usd"></span> Realizar</a>
+                                    </li>
+                                    <li id="proveedor_agregar">
+                                        <a href="/empleados/empleado/pago_listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                    <li id="pago_buscar">
+                                        <a href="/empleados/empleado/pago_buscar"><span class="fa fa-search"></span> Buscar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#"><span class="glyphicon glyphicon-thumbs-up"></span> Comisión<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="empleados_comision">
+                                        <a href="/empleados/empleado/comision"> <span class="glyphicon glyphicon-thumbs-up"></span> Calcular</a>
+                                    </li>
+                                    <li id="empleados_comision_listar">
+                                        <a href="/empleados/empleado/comision_listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li><a href="#"><span class="glyphicon glyphicon-warning-sign"></span> Préstamo<span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li id="empleados_prestamo">
+                                        <a href="/empleados/empleado/prestamo"> <span class="glyphicon glyphicon-warning-sign"></span> Realizar</a>
+                                    </li>
+                                    <li id="empleados_prestamo_listar">
+                                        <a href="/empleados/empleado/prestamo_listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li><a href="#"><span class="glyphicon glyphicon-usd"></span> Ventas<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          <li class="dropdown-header">Menu</li>
+
+                            <li id="venta_agregar">
+                                <a href="/tienda/venta/agregar"> <span class="glyphicon glyphicon-usd"></span> Realizar</a>
+                            </li>
+                            <li id="venta_listar">
+                                <a href="/tienda/venta/listar"> <span class="glyphicon glyphicon-list"></span> Listar</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <!--nologin-->
+                    <li>
+                        <a href="/users/user/login"></a>
+                    </li>
+                    <!--nologin-->
+                    <!--login-->
+                    <li id="usuario">
+                        <a href="/users/user/listar"><span class="glyphicon glyphicon-user">
+                         </span> <strong style="text-transform: uppercase;">{username}</strong> | ({level})</a>
+                    </li>
+                    <!--login-->
+                    <li>
+                        <a onclick="cerrar();"><span class="glyphicon glyphicon-remove-sign">
+                         </span> Cerrar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="col-md-12">
+            <h1>{TITLE}</h1>
+            <br>
+        </div>
+
+        <div class="col-md-12">
+            {CONTENIDO}
+        </div>
+    </div>
+    <script src="/static/js/validate.js"></script>
+
+</body>
+
+</html>

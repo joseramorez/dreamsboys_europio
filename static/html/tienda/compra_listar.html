@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<div class="col-md-10 col-md-offset-1 well well-sm">
+    <div class="col-sm-5" style="aling=center;">
+        <a href="/tienda/compra/agregar"><span class="fa fa-plus-square fa-2x"></span> Agregar nueva compra</a>
+    </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-10 col-md-offset-1">
+    <form name="tabla_compra" method="post">
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered table-hover" id="tabla">
+                <thead>
+                    <tr>
+                        <th>Compra</th>
+                        <th>Proveedor</th>
+                        <th>fecha compra</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!--LISTADO-->
+                    <tr>
+                        <td>{compra_id}</td>
+                        <td>{proveedor}</td>
+                        <td>{fecha_compra}</td>
+
+                        <td class="centratesolito">
+                            <a disabled onclick="alertify.confirm('¿Desea ver detalles de la compra de {proveedor}?',
+                            function(){location.href = '/tienda/compra/detalle/{compra_id}';alertify.success('Ok');}); ">
+                                <span class="glyphicon glyphicon-align-justify" title="Editar la compra de {proveedor}"></span>
+                            </a>
+                            <!-- &nbsp;
+                            <a disabled onclick="alertify.confirm('¿Desea borrar la compra {compra_id}?',
+                            function(){ location.href='/tienda/compra/eliminar/{compra_id}';alertify.success('Ok');});">
+                                <span class="glyphicon glyphicon-remove" title="Eliminar la compra {compra_id}"></span>
+                            </a> -->
+                        </td>
+                    </tr>
+                    <!--LISTADO-->
+                </tbody>
+            </table>
+        </div>
+
+    </form>
+
+</div>

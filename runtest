@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ "debug=1" == "$1" ]; then
+    DEBUG=" --debug "
+else
+    DEBUG=""
+fi
+
+clear
+phpunit --verbose --colors --test-suffix _test.php $DEBUG .

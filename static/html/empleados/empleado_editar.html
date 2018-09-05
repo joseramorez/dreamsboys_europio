@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1">
+      <form class="" action="/empleados/empleado/guardar" id="frmempleado" method="post">
+        <input type="hidden" name="id" value="{empleado_id}">
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Nombre</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="nombre" value="{nombre}" id="nombre" class="form-control" >
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Apellido Paterno</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="apellido_paterno" value="{apellido_paterno}" id="apellido_paterno" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Apellido Materno</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="apellido_materno" value="{apellido_materno}" id="apellido_materno" class="form-control" >
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Edad</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="number" name="edad" value="{edad}" id="edad" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Fecha Nacimiento</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="fecha_nacimiento" value="{fecha_nacimiento}" id="fecha" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Dirección</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="direccion" value="{direccion}" id="direccion" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Teléfono</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="tel" name="telefono" value="{telefono}" id="telefono" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">CURP</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="curp" value="{curp}" id="curp" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">RFC</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="text" name="rfc" value="{rfc}" id="rfc" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-5 ">
+                <div class="form-group">
+                    <div class="col-sm-12 col-sm-4 col-md-12">
+                      <label class="control-label" for="">Salario</label>
+                    </div>
+                    <div class="col-sm-12 col-sm-6 col-md-12">
+                      <input type="number" name="salario" value="{salario}" id="salario" class="form-control">
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-11 col-md-2 col-md-pull-0 ">
+              <div class="col-md-12">
+                <button type="submit" class="btn btn-success btn-block btn-lg">
+                <span name="guardar" id="guardar_producto" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                </button>
+                <br>
+              </div>
+              <div class="col-md-12">
+                <a onclick="cancelar('/empleados/empleado/listar');" ;>
+                <button type="button" class="btn btn-danger btn-block btn-lg">
+                <span name="guardar" id="cancelar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+                </button>
+              </a>
+                <br>
+              </div>
+
+          </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<script src="/static/js/venta.js"></script>
+<div class="row">
+    <div class="container">
+        <div class="col-xs-12 col-sm-8 col-md-9">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="col-xs-12 col-sm-8 col-md-1 col-md-offset-1">
+                    <label><h4>Código:</h4></label>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-10">
+                    <div class="input-group">
+                        <input type="number" class="form-control col-xs-12 col-sm-12" name="codigo_ventas" id="codigo_venta" placeholder="Código">
+                        <span class="input-group-btn"><button class="btn btn-default" type="button" id="agregar"><span class="glyphicon glyphicon-plus"> Agregar</span></button>
+                        </span><span class="input-group-btn"><button class="btn btn-default" type="button" id="buscar" data-toggle="modal" data-target="#modal_buscar"><span class="glyphicon glyphicon-search"> Buscar</span></button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" action="/tienda/venta/guardar" id="frmventa">
+            <div class="col-xs-12 col-sm-8 col-md-9">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="tablaventa">
+                        <thead>
+                            <br>
+                            <tr>
+                                <th class="centratesolito">Quitar</th>
+                                <th class="centratesolito">Código</th>
+                                <th class="centratesolito">Producto</th>
+                                <th class="centratesolito">Cantidad</th>
+                                <th class="centratesolito">Precio Unitario</th>
+                                <th class="centratesolito">Descuento(%)</th>
+                                <th class="centratesolito">Importe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="list-group">
+                    <p>Fecha del Sistema</p>
+                    <input type="text" name="fecha_venta" value="{fecha}" class="form-control" readonly="">
+                    <br>
+                    <p>Clave de Vendedor</p>
+                    <div class="validar">
+                      <select class="form-control" id="clave_vendedor" name="clave_vendedor">
+                    </div>
+                <option value="">Seleccione una vendedor</option>
+                {VENDEDOR}
+            </select>
+                    <br>
+                    <p>Monto a Pagar</p>
+                    <div class="validar">
+                      <br><input type="text" class="form-control" name="total" id="total" value="" placeholder="Total">
+                    </div>
+                    <br>
+                    <p>Cantidad Recibida</p>
+                    <div class="validar">
+                      <input type="text" class="form-control" name="cantidad_recibida" id="cantidad_recibida" value="" placeholder="">
+                    </div>
+                    <br>
+                    <p>Cambio</p>
+                    <input type="text" class="form-control" name="cambio" id="cambio" value="" placeholder="Cambio">
+                    <br>
+                    <button type="submit" name="button" class="btn btn-success btn-block">Cobrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_buscar" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">BUSQUEDA DE PRODUCTOS POR NOMBRE</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <div class="col-md-10">
+                        <input type="text" name="nombre_buscar" id="nombre_buscar" class="form-control" placeholder="nombre del producto">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" onclick="agregarApedido();" class="btn btn-info" id="buscar_producto">agregar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="cont_producto">
+                <div class="col-md-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading centrate"> Productos &nbsp;&nbsp; </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <br>
+                                <!--PRODUCTOS-->
+                                <div class="col-md-4 col-sm-6">
+                                    <div class="portfolio-item">
+                                        <div class="portfolio-image">
+                                            <img class="img-responsive" id="imagen" alt="Imagen del producto">
+                                        </div>
+                                        <div class="portfolio-info">
+                                            <ul>
+                                                <li class="portfolio-project-name" id="nombre_producto"></li>
+                                                <div class="" id="modelo">
+                                                    <li>modelo:<span></span></li>
+                                                </div>
+                                                <div class="" id="codigo">
+                                                    <li>codigo:<span></span></li>
+                                                </div>
+                                                <div class="" id="precio_compra">
+                                                    <li><label>$<span></span></label></li>
+                                                </div>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--PRODUCTOS-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br><br>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

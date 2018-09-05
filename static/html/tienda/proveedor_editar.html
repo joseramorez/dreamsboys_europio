@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<div class="col-xs-12 col-sm-12 col-md-11 col-md-offset-1">
+    <form class="" action="/tienda/proveedor/guardar" id="frmproveedor" method="post">
+        <input type="hidden" name="id" value="{proveedor_id}">
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                    <label class="control-label" for="nombre" title="Registro Unico de Contribuyentes">RUC</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="text" name="ruc" value="{ruc}" id="ruc" class="form-control" title="Registro Unico de Contribuyentes">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="">Razón Social</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="text" name="razon_social" value="{razon_social}" id="razon_social" class="form-control">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="">Dirección</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="text" name="direccion" value="{direccion}" id="direccion" class="form-control" title="Direccion fisica">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="">Rubro</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="text" name="descripcion_rubro" value="{descripcion_rubro}" id="descripcion_rubro" class="form-control">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="">Email</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="text" name="email" value="{email}" id="email" class="form-control">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-11 col-md-5 ">
+            <div class="form-group">
+                <div class="col-sm-12 col-sm-4 col-md-12">
+                  <label class="control-label" for="">Teléfono</label>
+                </div>
+                <div class="col-sm-12 col-sm-6 col-md-12">
+                  <input type="number" name="telefono" value="{telefono}" id="telefono" class="form-control">
+
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-11 col-md-2 col-md-10 ">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success btn-block btn-lg">
+            <span name="guardar" id="guardar_producto" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+            </button>
+            <br>
+          </div>
+          <div class="col-md-12">
+            <a onclick="cancelar('/tienda/proveedor/listar');">
+            <button type="button" class="btn btn-danger btn-block btn-lg">
+            <span name="guardar" id="cancelar" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Cancelar
+            </button>
+          </a>
+            <br>
+          </div>
+        </div>
+    </form>
+</div>

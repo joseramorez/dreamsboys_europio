@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<div class="row">
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<div class="panel panel-red panel-widget ">
+			<div class="row no-padding">
+				<div class="col-sm-3 col-lg-5 widget-left">
+					<span class="fa fa-exclamation-circle fa-4x"></span>
+				</div>
+				<div class="col-sm-9 col-lg-7 widget-right">
+					<div class="large centratesolito">
+						<a onclick="c_faltantes();" title="numero de faltantes de producto" id="c_faltantes"> <strong>{faltante} </strong></a>
+					</div>
+					<div class="text-muted">
+						N° Faltanes
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<div class="panel panel-orange panel-widget">
+			<div class="row no-padding">
+				<div class="col-sm-3 col-lg-5 widget-left">
+					<span class="fa fa-barcode fa-4x"></span>
+				</div>
+				<div class="col-sm-9 col-lg-7 widget-right">
+					<div class="large centratesolito">
+						<a onclick="c_productos();" title="cantidad de productos diferentes que se venden en la tienda" id="c_productos">
+							<strong>{c_producto}</strong>
+						</a>
+					</div>
+					<div class="text-muted centratesolito">N° productos</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<div class="panel panel-teal panel-widget">
+			<div class="row no-padding">
+				<div class="col-sm-3 col-lg-5 widget-left">
+					<span class="fa fa-credit-card fa-4x"></span>
+				</div>
+				<div class="col-sm-9 col-lg-7 widget-right">
+					<div class="large centratesolito">
+						<a onclick="c_ventas();" title="cantidad de ventas realizadas (lunes a domingo)" id="c_productos">
+							<strong>{c_ventas}</strong>
+						</a>
+					</div>
+					<div class="text-muted centratesolito">N° ventas</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-md-6 col-lg-3">
+		<div class="panel panel-blue panel-widget">
+			<div class="row no-padding">
+				<div class="col-sm-3 col-lg-5 widget-left">
+					<span class="fa fa-usd fa-4x"></span>
+				</div>
+				<div class="col-sm-9 col-lg-7 widget-right">
+					<div class="large centratesolito" title="total de las ventas realizadas en la semana"><strong>$ {c_ventas_total}</strong></div>
+					<div class="text-muted" style="font-size: 13px;">total de ventas</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--/.row-->
+<div class="row ">
+	<div class="centrate">
+		<div class="col-md-12 alert">
+			<button type="button" class="close" data-dismiss="alert"><span class="fa fa-times-circle-o"></span></button>
+
+			<div class="panel panel-default">
+				<div class="panel-heading"> Ultimas ventas &nbsp;&nbsp; <a href="#" onclick="/users/user/control"><span class="fa fa-refresh"></span></a></div>
+				<div class="panel-body">
+					<br>
+					<!--VENTAS-->
+					<div class="col-md-3 well">
+						<div class="form-group">
+							<label class="" for="">Fecha</label>
+							<input type="text" name="" value="{fecha_venta}" class="form-control centrate" readonly="">
+						</div>
+						<div class="form-group">
+							<label class="" for="">Empleado</label>
+							<input type="text" name="" value="{nombre_empleado}" class="form-control centrate" readonly="">
+						</div>
+						<div class="form-group">
+							<label class="" for="">Total</label>
+							<input type="text" name="" value="${total}" class="form-control centrate" readonly="">
+						</div>
+						<div class="form-group">
+							<label class="" for="">Pago con:</label>
+							<input type="text" name="" value="${paga_con}" class="form-control centrate" readonly="">
+						</div>
+						<div class="form-group">
+							<label class="" for="">Cambio:</label>
+							<input type="text" name="" value="${cambio}" class="form-control centrate" readonly="">
+						</div>
+						<div class="form-group">
+							<a href="/tienda/venta/detalle/{venta_id}" target="_blank">
+								<input type="button" name="" value="Ir a detalle" class="btn btn-primary btn-block centrate" data-toggle="tooltip" title=" Ver detalle de la venta" readonly="">
+							</a>
+						</div>
+					</div>
+					<!--VENTAS-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--/.row-->
+
+<div class="row">
+	<div class="col-md-12 alert">
+		<button type="button" class="close" data-dismiss="alert"><span class="fa fa-times-circle-o"></span></button>
+		<div class="panel panel-default">
+			<div class="panel-heading centrate"> Ultimos productos agregados &nbsp;&nbsp; <a href="#" onclick="/users/user/control"><span class="fa fa-refresh"></span></a></div>
+			<div class="panel-body">
+				<div class="row">
+					<br>
+					<!--PRODUCTOS-->
+					<div class="col-md-4 col-sm-6">
+						<div class="portfolio-item">
+							<div class="portfolio-image">
+								<img class="img-responsive" src="/static/dreamsboys/{imagen}" alt="Project Name">
+							</div>
+							<div class="portfolio-info">
+								<ul>
+									<li class="portfolio-project-name">{nombre_producto}</li>
+									<li>modelo: {modelo}</li>
+									<li>codigo: {codigo}</li>
+									<li><label>${precio_venta}</label></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<!--PRODUCTOS-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

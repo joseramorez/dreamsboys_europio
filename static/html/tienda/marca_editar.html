@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<form class="" action="/tienda/marca/guardar" method="post" id="frmMarca">
+    <input type="hidden" name="id" value="{marca_id}" id="marca_id">
+    <div class="col-md-12">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-4 col-md-12">
+                    <label class="control-label" for="nombre">Nombre de la Marca</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                    <input type="text" name="nombre_marca" value="{nombre_marca}" id="nombre_marca" class="form-control" autocomplete="off">
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1">
+            <div class="form-group">
+                <div class="col-xs-12 col-sm-4 col-md-12">
+                    <label class="control-label" for="">Descripción de la Marca</label>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-8">
+                    <input type="text" name="desc_marca" value="{descripcion}" id="desc_marca" class="form-control">
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <div class="col-xs-12 col-sm-9 col-md-8 col-md-offset-1">
+            <div class="form-group">
+                <br>
+                <div class="col-xs-12 col-sm-5 col-md-4">
+                    <button type="submit" class="btn btn-success btn-md">
+                    <span name="guardar" id="guardar_categoria" value="Guardar" class="glyphicon glyphicon-floppy-disk"></span> Guardar
+                    </button>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-4">
+                    <a onclick="cancelar('/tienda/marca/listar');">
+                        <button type="button" class="btn btn-danger btn-md">
+                    <span name="guardar" id="guardar_categoria" value="Guardar" class="glyphicon glyphicon-floppy-remove"></span> Guardar
+                    </button>
+                    </a>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
