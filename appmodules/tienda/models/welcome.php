@@ -1,6 +1,6 @@
 <?php
 
-class venta extends StandardObject {
+class welcome extends StandardObject {
 
     public function __construct() {
         $this->venta_id = 0;

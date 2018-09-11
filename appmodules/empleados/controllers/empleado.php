@@ -87,10 +87,7 @@ class empleadoController extends Controller
       $fecha_pago_final = isset($_POST['fecha_pago_final']) ? Funciones::fecha($_POST['fecha_pago_final']) : 0;
       $prestamo = isset($_POST['prestamo']) ? $_POST['prestamo'] : 0;
       $pago_final = isset($_POST['pago_final']) ? $_POST['pago_final'] : 0;
-
-      $sql = "INSERT INTO pago_empleado(pago_empleado_id, empleado_id, fecha_pago_inicio, fecha_pago_final, total_prestamo, pago) VALUES (null,?,?,?,?,?)";
-      $data = array("sssss", "".$clave_empleado,"".$fecha_pago_inicio,"".$fecha_pago_final,"".$prestamo,"".$pago_final);
-      $list = MySQLiLayer::ejecutar($sql, $data);
+      $this->model->pago_guardar($clave_empleado,$pago,$fecha_pago_inicio,$fecha_pago_final,$prestamo,$pago_final);
       Funciones::confirmar("Va a realizar otro Nuevo pago","/empleados/empleado/pago","/empleados/empleado/listar");
 
     }
@@ -107,10 +104,7 @@ class empleadoController extends Controller
     public function  salario() {
 
       $id = isset($_POST['salario']) ? $_POST['salario']  : 0;
-      $sql ="SELECT salario FROM empleado WHERE empleado_id = ?";
-      $data = array("i", "$id");
-      $fields = array( "salario"=>"");
-      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $list = $this->model->salario($id);
       echo json_encode($list);
     }
     // buscar pagos ya realizados al empleado
@@ -160,10 +154,7 @@ class empleadoController extends Controller
 
     public function comision() {
         @SessionHandler()->check_state(1);
-        $sql ="SELECT empleado_id, CONCAT(nombre,' ',apellido_paterno) FROM empleado WHERE empleado_id>?";
-        $data = array("i", "0");
-        $fields = array("id"=>"", "nombre"=>"");
-        $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+        $lsit = $this->model->comision();
         $this->view->comision($list);
     }
     public function comision_listar() {
@@ -211,10 +202,7 @@ class empleadoController extends Controller
     // ==================== PRESTAMO ===========================================
     public function prestamo() {
         @SessionHandler()->check_state(1);
-        $sql ="SELECT empleado_id, nombre, apellido_paterno, apellido_materno, edad, date_format(fecha_nacimiento,'%d/%m/%Y'), direccion, telefono, curp, rfc, salario FROM empleado WHERE empleado_id>?";
-        $data = array("i", "0");
-        $fields = array("id"=>"", "nombre"=>"", "apellido_paterno"=>"", "apellido_materno"=>"", "edad"=>"", "fecha_nacimiento"=>"", "direccion"=>"", "telefono"=>"", "curp"=>"", "rfc"=>"", "salario"=>"");
-        $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+        $list = $this->model->prestamo();
         $hoy = date('d-m-Y');
         if (empty($list)) {
             Funciones::redireccion('La tabla esta vacia', '/empleados/empleado/agregar');
@@ -224,46 +212,23 @@ class empleadoController extends Controller
     }
     public function prestamo_guardar() {
       @SessionHandler()->check_state(1);
-
       $clave_empleado = isset($_POST['clave_empleado']) ? $_POST['clave_empleado'] : 0;
       $prestamo = isset($_POST['prestamo']) ? $_POST['prestamo'] : 0;
       $fecha = isset($_POST['fecha']) ? Funciones::fecha($_POST['fecha']) : "null";
-      $sql = "INSERT INTO prestamo(prestamo_id,empleado_id, prestamo, fecha) VALUES (null,?,?,?)";
-      $data = array("sss", "".$clave_empleado,"".$prestamo,"".$fecha);
-      $list = MySQLiLayer::ejecutar($sql, $data);
+      $this->model->prestamo_guardar($clave_empleado,$prestamo,$fecha);
       HTTPHelper::go("/empleados/empleado/prestamo_listar/$clave_empleado");
     }
     public function prestamo_calculo() {
       @SessionHandler()->check_state(1);
-
       $fecha = isset($_POST['fecha']) ? Funciones::fecha($_POST['fecha']) : "null";
       $fecha2 = isset($_POST['fecha2']) ? Funciones::fecha($_POST['fecha2']) : "null";
       $clave_empleado = isset($_POST['clave_empleado']) ? $_POST['clave_empleado'] :0;
-      $sql = "SELECT sum(prestamo) as totalsum FROM prestamo WHERE empleado_id = ?
-       AND fecha BETWEEN '$fecha' AND '$fecha2'";
-      $data = array("i","$clave_empleado");
-      $fields = array("total_prestamo"=>"");
-      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $this->model->prestamo_calculo($fecha,$fecha2,$clave_empleado);
       echo json_encode($list);
     }
     public function prestamo_listar($id=0) {
       @SessionHandler()->check_state(1);
-
-      $sql1 ="SELECT tp.prestamo_id, tp.empleado_id, tp.prestamo, date_format(tp.fecha,'%d/%m/%Y'), te.nombre as fecha
-                    FROM prestamo tp, empleado te
-                    WHERE tp.empleado_id = ?
-                    AND tp.empleado_id = te.empleado_id";
-
-      $sql2 ="SELECT tp.prestamo_id, tp.empleado_id, tp.prestamo, date_format(tp.fecha,'%d/%m/%Y'), te.nombre as fecha
-                    FROM prestamo tp, empleado te
-                    WHERE tp.empleado_id > ?
-                    AND tp.empleado_id = te.empleado_id
-                    LIMIT 0,1000";
-
-      $sql = ($id==0) ? $sql2 : $sql1;
-      $data = array("i", "$id");
-      $fields = array("prestamo_id"=>"","empleado_id"=>"","prestamo"=>"","fecha"=>"","nombre"=>"");
-      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $this->model->prestamo_listar($id);
       $this->view->prestamo_listar($list);
     }
 }

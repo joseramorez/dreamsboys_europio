@@ -94,32 +94,12 @@ class compraController extends Controller {
 
     public function eliminar($id=0) {
       @SessionHandler()->check_state(1);
-        $sql="DELETE FROM compra_detalle WHERE compra_id = ?";
-        $sql_c="DELETE FROM compra WHERE compra_id = ?";
-        $data = array("i", "$id");
-        MySQLiLayer::ejecutar($sql, $data);
-        MySQLiLayer::ejecutar($sql_c, $data);
-        HTTPHelper::go("/tienda/compra/listar");
+      $this->model->eliminar($id);
+      HTTPHelper::go("/tienda/compra/listar");
     }
     public function detalle($id=0)
     {
-      $sql ="SELECT tc.compra_id,tpr.razon_social,DATE_FORMAT(tc.fecha_compra, '%d/%m/%Y')
-              FROM compra tc, proveedor tpr
-              WHERE tc.compra_id = ?
-              AND tc.proveedor_id = tpr.proveedor_id";
-      $data = array("i", "$id");
-      $fields = array("compra_id"=>"", "proveedor"=>"",
-                    "fecha_compra"=>"");
-      $compra = MySQLiLayer::ejecutar($sql, $data, $fields);
-
-      $sql_d = "SELECT tcd.compra_detalle_id,tp.nombre_producto,tp.codigo,tcd.cantidad,tcd.precio_compra,tcd.precio_venta,tcd.importe
-              FROM compra_detalle tcd,producto tp
-              WHERE tcd.compra_id = ?
-              AND tcd.producto_id = tp.producto_id";
-      $data_d = array("i", "$id");
-      $fields_d = array("compra_detalle_id"=>"","nombre_producto"=>"","codigo"=>"","cantidad"=>"","precio_compra"=>"","precio_venta"=>"","importe"=>"");
-      $compra_d = MySQLiLayer::ejecutar($sql_d, $data_d, $fields_d);
-
+      list($compra,$compra_d) = $this->model->detalle($id);
       $this->view->detalle($compra,$compra_d);
     }
     #===========================================================================

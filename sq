@@ -1,0 +1,11 @@
+create table empleado (
+  ,empleado_id int auto_increment not null
+  ,nombre var_char(100)
+  ,apellido_m var_char(100)
+  ,apellido_p var_char(100)
+  ,direccion var_char(100)
+  ,salario_base float
+  ,fecha_nacimiento data
+  ,sexo var_char(9)
+  ,estado civil var_char
+)

@@ -99,11 +99,7 @@ class ventaController extends Controller {
       $codigo = (isset($_POST['codigo'])) ? $_POST['codigo'] : 0;
       $descuento = (isset($_POST['descuento'])) ? $_POST['descuento'] : 0;
       $cantidad = (isset($_POST['cantidad'])) ? $_POST['cantidad'] : 0;
-      $sql ="SELECT producto_id,codigo,nombre_producto,(?) as cantidad, precio_venta, (?) as descuento, (precio_venta-(precio_venta*(?/100)))* $cantidad as importe FROM producto WHERE codigo = ? AND existencia > 0" ;
-      // $sql ="SELECT codigo, nombre_producto, precio_venta FROM producto WHERE codigo = ?";
-      $data = array("iiii", "$cantidad","$descuento","$descuento","$codigo");
-      $fields = array("id"=>"","codigo"=>"","nombre_producto"=>"","cantidad"=>"","precio_venta"=>"","descuento"=>"","importe"=>"");
-      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $this->model->busca_producto($cantidad,$descuento,$descuento,$codigo);
       echo json_encode($results);
     }
     #===========================================================================

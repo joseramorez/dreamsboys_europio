@@ -14,6 +14,8 @@ class empleado extends StandardObject {
         $this->curp = "";
         $this->rfc = "";
         $this->salario = 0;
+
+
     }
     function empleado_get($id=0)
     {
@@ -35,7 +37,7 @@ class empleado extends StandardObject {
     }
     function pago_listar($ext = "")
     {
-      $sql ="SELECT tp.pago_empleado_id, tp.empleado_id, tp.fecha_pago_inicio, tp.fecha_pago_final, tp.total_prestamo, tp.pago,
+      $sql ="SELECT tp.pago_empleado_id, tp.empleado_id, DATE_FORMAT(tp.fecha_pago_inicio, '%d-%m-%Y'), DATE_FORMAT(tp.fecha_pago_final, '%d-%m-%Y'), tp.total_prestamo, tp.pago,
       CONCAT(tp.empleado_id,' : ',te.nombre,' ',te.apellido_paterno) as nombre
             FROM pago_empleado tp, empleado te
             WHERE pago_empleado_id > ?
@@ -171,7 +173,68 @@ class empleado extends StandardObject {
       $list = MySQLiLayer::ejecutar($sql, $data, $fields);
       return $list;
     }
+    public function pago_guardar($clave_empleado,$pago,$fecha_pago_inicio,$fecha_pago_final,$prestamo,$pago_final)
+    {
+      $sql = "INSERT INTO pago_empleado(pago_empleado_id, empleado_id, fecha_pago_inicio, fecha_pago_final, total_prestamo, pago) VALUES (null,?,?,?,?,?)";
+      $data = array("sssss", "".$clave_empleado,"".$fecha_pago_inicio,"".$fecha_pago_final,"".$prestamo,"".$pago_final);
+      $list = MySQLiLayer::ejecutar($sql, $data);
+    }
+    public function salario($id)
+    {
+      $sql ="SELECT salario FROM empleado WHERE empleado_id = ?";
+      $data = array("i", "$id");
+      $fields = array( "salario"=>"");
+      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $list;
+    }
+    public function comision()
+    {
+      $sql ="SELECT empleado_id, CONCAT(nombre,' ',apellido_paterno) FROM empleado WHERE empleado_id>?";
+      $data = array("i", "0");
+      $fields = array("id"=>"", "nombre"=>"");
+      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $list;
+    }
+    public function prestamo()
+    {
+      $sql ="SELECT empleado_id, nombre, apellido_paterno, apellido_materno, edad, date_format(fecha_nacimiento,'%d/%m/%Y'), direccion, telefono, curp, rfc, salario FROM empleado WHERE empleado_id>?";
+      $data = array("i", "0");
+      $fields = array("id"=>"", "nombre"=>"", "apellido_paterno"=>"", "apellido_materno"=>"", "edad"=>"", "fecha_nacimiento"=>"", "direccion"=>"", "telefono"=>"", "curp"=>"", "rfc"=>"", "salario"=>"");
+      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $list;
+    }
+    public function prestamo_guardar($clave_empleado,$prestamo,$fecha)
+    {
+      $sql = "INSERT INTO prestamo(prestamo_id,empleado_id, prestamo, fecha) VALUES (null,?,?,?)";
+      $data = array("sss", "".$clave_empleado,"".$prestamo,"".$fecha);
+      MySQLiLayer::ejecutar($sql, $data);
+    }
+    public function prestamo_listar($id)
+    {
+        $sql1 ="SELECT tp.prestamo_id, tp.empleado_id, tp.prestamo, date_format(tp.fecha,'%d/%m/%Y'), te.nombre as fecha
+                      FROM prestamo tp, empleado te
+                      WHERE tp.empleado_id = ?
+                      AND tp.empleado_id = te.empleado_id";
 
+        $sql2 ="SELECT tp.prestamo_id, tp.empleado_id, tp.prestamo, date_format(tp.fecha,'%d/%m/%Y'), te.nombre as fecha
+                      FROM prestamo tp, empleado te
+                      WHERE tp.empleado_id > ?
+                      AND tp.empleado_id = te.empleado_id
+                      LIMIT 0,1000";
+
+        $sql = ($id==0) ? $sql2 : $sql1;
+        $data = array("i", "$id");
+        $fields = array("prestamo_id"=>"","empleado_id"=>"","prestamo"=>"","fecha"=>"","nombre"=>"");
+        $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+    }
+    public function prestamo_calculo($fecha,$fecha2,$clave_empleado)
+    {
+      $sql = "SELECT sum(prestamo) as totalsum FROM prestamo WHERE empleado_id = ?
+       AND fecha BETWEEN '$fecha' AND '$fecha2'";
+      $data = array("i","".$clave_empleado);
+      $fields = array("total_prestamo"=>"");
+      $list = MySQLiLayer::ejecutar($sql, $data, $fields);
+    }
 }
 
 ?>
