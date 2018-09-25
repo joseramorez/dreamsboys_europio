@@ -3,9 +3,13 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="/static/css/login.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/static/css/login.css" /> -->
     <link rel="stylesheet" href="/static/css/alertify.css">
     <link rel="stylesheet" href="/static/css/themes/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/util.css">
 
     <title>Ingreso al Sistema</title>
 
@@ -21,26 +25,41 @@
         alertify.defaults.theme.cancel = "btn btn-danger";
         alertify.defaults.theme.input = "form-control";
     </script>
-    <div class="login">
-        <form class="form-signin" method="POST" action="/users/user/check" id="login">
-            <h3 style="color:white; text-align:center;">Usuario y Contraseña</h3>
-            <p style="color:white; text-align:center;">
-                Usuario desconectado del sistema
-            </p>
 
-            <br>
-            <div class="form-group centrate">
-                <div class="col-sm-5">
-                    <input type="text" name="user" id="user" placeholder="Nombre de Usuario" autocomplete="off" /><br>
-                </div>
-                <div class="col-sm-5">
-                    <input type="password" name="pwd" id="pwd" placeholder="Contraseña" /><br><br>
-                </div>
-                <div class="col-sm-5">
-                    <input type="button" onclick="logear();" value="Ingresar" class="btn btn-primary btn-block btn-large">
-                </div>
-            </div>
-        </form>
-    </div>
-    <script src="/static/js/login.js"></script>
+    <div class="limiter">
+  		<div class="container-login100">
+  			<div class="wrap-login100">
+  				<div class="login100-form-title" style="background-image: url(/static/img/dreamsboys.jpg);">
+  					<span class="login100-form-title-1">
+  						INICIAR SESSION
+  					</span>
+  				</div>
+
+  				<form class="login100-form validate-form"  method="POST" action="/users/user/check" id="login">
+  					<div class="wrap-input100 validate-input m-b-26" data-validate="Usuario requerido">
+  						<span class="label-input100">Usuario</span>
+  						<input class="input100" type="text" name="user" id="user" placeholder="DreamsBoys">
+  						<span class="focus-input100"></span>
+  					</div>
+
+  					<div class="wrap-input100 validate-input m-b-18" data-validate = "Contraseña requerido">
+  						<span class="label-input100">Contraseña</span>
+  						<input class="input100" type="password" name="pwd" id="pwd" placeholder="*******">
+  						<span class="focus-input100"></span>
+  					</div>
+
+
+  					<div class="container-login100-form-btn">
+  						<button class="login100-form-btn">
+  							INICIAR SESSION
+  						</button>
+  					</div>
+  				</form>
+  			</div>
+  		</div>
+  	</div>
+
+
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/map-custom.js"></script>
 </body>

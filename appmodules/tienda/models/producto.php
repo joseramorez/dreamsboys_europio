@@ -107,4 +107,102 @@ class producto extends StandardObject
       $results = MySQLiLayer::ejecutar($sql, $data, $fields);
       return $results;
     }
+    public function eliminar()
+    {
+      $sql = "SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id = ? AND tp.categoria_id = tc.categoria_id";
+      $data = array("i", "".$this->producto_id);
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"","codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $results;
+    }
+    public function buscar_result($categoria_id,$nombre_producto,$marca,$talla,$color,$modelo,$precio_compra,$precio_venta,$existencia,$stock,$codigo)
+    {
+      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria
+              FROM producto tp, categoria tc,marca tm
+              WHERE producto_id > ?
+              AND tp.categoria_id = tc.categoria_id
+              AND tp.marca_id = tm.marca_id "
+              .$categoria_id.
+              $nombre_producto.
+              $marca.
+              $talla.
+              $color.
+              $modelo.
+              $precio_compra.
+              $precio_venta.
+              $existencia.
+              $stock.
+              $codigo."";
+      $data = array("i", "0");
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+    }
+    public function eliminarimg($id)
+    {
+      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id = ? AND tp.categoria_id = tc.categoria_id";
+      $data = array("i", "".$id);
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"","codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $results;
+    }
+    public function update_img($imagen,$id)
+    {
+      $sql_img = 'UPDATE  producto set imagen=? WHERE producto_id=?';
+      $data_img = array("ss", "".$imagen, "".$id);
+      $result = MySQLiLayer::ejecutar($sql_img, $data_img);
+    }
+    public function Verificarexistencia()
+    {
+      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id > ? AND tp.categoria_id = tc.categoria_id";
+      $data = array("i", "0");
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $results;
+    }
+    public function __verifica_imagen($imagen)
+    {
+      $sql ="SELECT producto_id, imagen FROM producto WHERE imagen = ?";
+      $data = array("s","".$imagen );
+      $fields = array("producto_id"=>"","imagen"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      return $results;
+    }
+    public function __verifica_codigo($codigo)
+    {
+      $sql ="SELECT producto_id, codigo FROM producto WHERE codigo = ?";
+      $data = array("s","".$codigo );
+      $fields = array("producto_id"=>"","codigo"=>"");
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+    }
+    public function _autocompletado($nombre_buscar='')
+    {
+      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria
+              FROM producto tp, categoria tc,marca tm
+              WHERE tp.nombre_producto LIKE ?
+              AND tp.categoria_id = tc.categoria_id
+              AND tp.marca_id = tm.marca_id
+              LIMIT 0,10";
+      $data = array("s", "%".$nombre_buscar."%");
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
+      ob_start();
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      ob_end_clean();
+      return $results;
+    }
+    public function _buscar_producto($codigo='')
+    {
+      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria,(1) as cantidad
+              FROM producto tp, categoria tc,marca tm
+              WHERE tp.codigo = ?
+              AND tp.categoria_id = tc.categoria_id
+              AND tp.marca_id = tm.marca_id
+              LIMIT 0,10";
+      $data = array("i", "".$codigo);
+      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"","cantidad"=>"");
+       // BUS PARA LA BASE DE DATOS
+      ob_start();
+      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      ob_end_clean();
+      return $results;
+    }
 }

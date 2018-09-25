@@ -112,18 +112,12 @@ class proveedorController extends Controller {
     public function busca_producto(){
       $codigo = (isset($_POST['codigo'])) ? $_POST['codigo'] : 0;
       $cantidad = "1";
-      $sql ="SELECT producto_id,codigo,nombre_producto,(?) as cantidad, precio_compra, existencia, stock FROM producto WHERE codigo = ?";
-      $data = array("ii", "$cantidad","$codigo");
-      $fields = array("id"=>"","codigo"=>"","nombre_producto"=>"","cantidad"=>"","precio_compra"=>"","existencia"=>"","stock"=>"");
-      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $results = $this->model->busca_producto($codigo,$cantidad);
       echo json_encode($results);
     }
   public function sendCorreo($texto_plano="",$texto_html="",$correo_proveedor="",$razon_social="")
   {
-    $sql_correo ="SELECT correo,pass FROM correo WHERE correo_id > ? ORDER BY correo_id DESC LIMIT 0,1";
-    $data_correo = array("i", "0");
-    $fields_correo = array('correo'=>'','pass'=>'');
-    $correo = MySQLiLayer::ejecutar($sql_correo, $data_correo, $fields_correo);
+    $correo = $this->model->sendCorreo();
     if (!empty($correo)) {
       foreach ($correo as $key=>&$value) {
         $value['pass'] = base64_decode($value['pass']);

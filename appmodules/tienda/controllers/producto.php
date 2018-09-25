@@ -119,10 +119,8 @@ class productoController extends Controller {
     public function eliminar($id=0) {
       @SessionHandler()->check_state(1);
       if ($id != 0) {
-        $sql = "SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id = ? AND tp.categoria_id = tc.categoria_id";
-        $data = array("i", "$id");
-        $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"","codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
-        $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+          $this->model->producto_id = $id;
+          $results = $this->model->eliminar();
           $c = $results;
           foreach ($c as $key) {
             $this->nombre_imagen = $key["imagen"];
@@ -193,25 +191,7 @@ class productoController extends Controller {
       return false;
     }
     // consulta base
-    $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria
-            FROM producto tp, categoria tc,marca tm
-            WHERE producto_id > ?
-            AND tp.categoria_id = tc.categoria_id
-            AND tp.marca_id = tm.marca_id "
-            .$categoria_id.
-            $nombre_producto.
-            $marca.
-            $talla.
-            $color.
-            $modelo.
-            $precio_compra.
-            $precio_venta.
-            $existencia.
-            $stock.
-            $codigo."";
-    $data = array("i", "0");
-    $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
-    $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+    $this->model->buscar_result($categoria_id,$nombre_producto,$marca,$talla,$color,$modelo,$precio_compra,$precio_venta,$existencia,$stock,$codigo);
     if (empty($results)) {
       Funciones::redireccion_close('Busqueda sin Resultados, Realice una nueva busqueda', '/tienda/producto/buscar');
     }else {
@@ -242,10 +222,7 @@ class productoController extends Controller {
       $eliminada = false;
       if ($id != 0) {
         $categoria_id = 0;
-        $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id = ? AND tp.categoria_id = tc.categoria_id";
-        $data = array("i", "$id");
-        $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"","codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
-        $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+        $results = $this->model->eliminarimg($id);
           $c = $results;
           foreach ($c as $key) {
             $this->nombre_imagen = $key["imagen"];
@@ -255,9 +232,7 @@ class productoController extends Controller {
           unlink(STATIC_DIR."dreamsboys/".$this->nombre_imagen);
           $eliminada = true;
           $imagen = "";
-          $sql_img = 'UPDATE  producto set imagen=? WHERE producto_id=?';
-          $data_img = array("ss", "".$imagen, "".$id);
-          $result = MySQLiLayer::ejecutar($sql_img, $data_img);
+          $this->model->update_img($imagen,$id);
         }
         echo json_encode ($eliminada);
     }
@@ -266,11 +241,7 @@ class productoController extends Controller {
       $codigo = urldecode(isset($_POST['codigo']) ? $_POST['codigo'] : "");
       $id = urldecode(isset($_POST['id']) ? $_POST['id'] : "");
       $existe = False;
-
-      $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tp.marca_id, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria FROM producto tp, categoria tc WHERE producto_id > ? AND tp.categoria_id = tc.categoria_id";
-      $data = array("i", "0");
-      $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
-      $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $results = $this->model->Verificarexistencia();
       if (empty($codigo)) {
         echo json_encode ($existe);
       }else {
@@ -285,11 +256,7 @@ class productoController extends Controller {
    }
    private function __verifica_imagen($id=0,$imagen=""){
      $existe = false;
-
-     $sql ="SELECT producto_id, imagen FROM producto WHERE imagen = ?";
-     $data = array("s","$imagen" );
-     $fields = array("producto_id"=>"","imagen"=>"");
-     $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $results = $this->model->__verifica_imagen($imagen);
      foreach ($results as $value) {
        if(!empty($value[1])) $existe = true;
        return $existe;
@@ -298,48 +265,22 @@ class productoController extends Controller {
    }
    private function __verifica_codigo($id=0,$codigo=""){
      $existe = false;
-
-     $sql ="SELECT producto_id, codigo FROM producto WHERE codigo = ?";
-     $data = array("s","$codigo" );
-     $fields = array("producto_id"=>"","codigo"=>"");
-     $results = MySQLiLayer::ejecutar($sql, $data, $fields);
+      $this->model->__verifica_codigo();
      if(!empty($results[1])) $existe = true;
      return $existe;
    }
+
    public function _autocompletado()
    {
      $nombre_buscar = urldecode(isset($_POST['nombre_buscar'])?$_POST['nombre_buscar']:"no especificado");
-
-     $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria
-             FROM producto tp, categoria tc,marca tm
-             WHERE tp.nombre_producto LIKE ?
-             AND tp.categoria_id = tc.categoria_id
-             AND tp.marca_id = tm.marca_id
-             LIMIT 0,10";
-     $data = array("s", "%".$nombre_buscar."%");
-     $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"");
-      // BUS PARA LA BASE DE DATOS
-     ob_start();
-     $results = MySQLiLayer::ejecutar($sql, $data, $fields);
-     ob_end_clean();
+    // BUS PARA LA BASE DE DATOS
+    $results = $this->model->_autocompletado();
      echo json_encode($results);
    }
    public function _buscar_producto()
    {
      $codigo = urldecode(isset($_POST['codigo'])?$_POST['codigo']:"no especificado");
-
-     $sql ="SELECT tp.producto_id, tp.categoria_id, tp.nombre_producto, tm.nombre_marca, tp.talla, tp.color, tp.modelo, tp.precio_compra, tp.precio_venta, tp.existencia, tp.stock, tp.codigo, tp.imagen, tc.nombre_categoria,(1) as cantidad
-             FROM producto tp, categoria tc,marca tm
-             WHERE tp.codigo = ?
-             AND tp.categoria_id = tc.categoria_id
-             AND tp.marca_id = tm.marca_id
-             LIMIT 0,10";
-     $data = array("i", "$codigo");
-     $fields = array("producto_id"=>"", "categoria_id"=>"", "nombre_producto"=>"", "marca"=>"", "talla"=>"", "color"=>"", "modelo"=>"", "precio_compra"=>"", "precio_venta"=>"", "existencia"=>"", "stock"=>"", "codigo"=>"", "imagen"=>"", "nombre_categoria"=>"","cantidad"=>"");
-      // BUS PARA LA BASE DE DATOS
-     ob_start();
-     $results = MySQLiLayer::ejecutar($sql, $data, $fields);
-     ob_end_clean();
+     $results = $this->model->_buscar_producto($codigo);
      echo json_encode($results);
    }
 
