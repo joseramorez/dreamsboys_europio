@@ -7,7 +7,13 @@ class welcomeController extends Controller {
 
   public function inicio()
   {
+    @SessionHandler()->check_state();
     $this->view->inicio();
+  }
+
+  public function producto()
+  {
+
   }
 }
 

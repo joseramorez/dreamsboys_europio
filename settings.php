@@ -32,7 +32,7 @@ const SESSION_STRICT_LEVEL = False;
 # Directorio Web (ruta después del dominio. / para directorio raíz)
 const WEB_DIR = "/";
 # Ruta de la vista por defecto
-const DEFAULT_VIEW = "/users/user/listar";
+const DEFAULT_VIEW = "/tienda/welcome/inicio";
 
 # (opcional) directorio privado con permisos de escritura
 # solo por si en el futuro lo necesita algún módulo
